@@ -40,6 +40,9 @@ const ItemCounterButton = styled.button`
 `;
 const ItemCounterAmmount = styled.p`
   width: 7rem;
+  display: flex;
+  flex-direction: center;
+  justify-content: center;
   background-color: white;
 `;
 

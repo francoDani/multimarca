@@ -28,6 +28,7 @@ const UlContainer = styled.div`
 const UlNavigation = styled.ul`
   width: 80%;
   display: flex;
+  font-size: .7rem;
   list-style: none;
   justify-content: space-evenly;
   font-family: "Roboto", sans-serif;
