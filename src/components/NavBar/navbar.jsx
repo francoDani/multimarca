@@ -52,11 +52,11 @@ const Navbar = () => {
       </Search>
       <UlContainer>
         <UlNavigation>
-          <ul>Home</ul>
-          <ul>Products</ul>
-          <ul>Sales!</ul>
-          <ul>Help</ul>
-          <ul>About Us</ul>
+          <ul>Classical</ul>
+          <ul>Acustic</ul>
+          <ul>Electric</ul>
+          <ul>Ukelele</ul>
+          <ul>Sale!!</ul>
         </UlNavigation>
       </UlContainer>
     </Nav>

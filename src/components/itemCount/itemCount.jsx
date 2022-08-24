@@ -1,11 +1,11 @@
+import { useState } from "react";
 import styled from "styled-components";
 import { AddToCartButton } from "./addToCartButton";
-import { counterFunction, showCount } from "./counterFunction";
 
 
 const ConuterContainer = styled.div`
-  width: 300px;
-  height: 150px;
+  width: 250px;
+  height: 130px;
   background-color: #f5f5f5;
   border: solid 1px white;
   box-shadow: 0 0 5px gray;
@@ -47,13 +47,23 @@ const ItemCounterAmmount = styled.p`
 `;
 
 export const ItemCount = () => {
+    const [count, setCount] = useState(0);
+    const [stock, setStock] = useState(10);
   return (
     <ConuterContainer>
       <ItemTittle>Gracia Smg-2031</ItemTittle>
       <ItemCounterSection>
-        <ItemCounterButton onClick={counterFunction} value='subtract'>-</ItemCounterButton>
-        <ItemCounterAmmount id="counterValue">{showCount}</ItemCounterAmmount>
-        <ItemCounterButton plus="true" onClick={counterFunction} value='add'>+</ItemCounterButton>
+        <ItemCounterButton onClick={() => {
+            if (count > 0) {
+                setCount(count - 1);
+            }
+        }} value='subtract'>-</ItemCounterButton>
+        <ItemCounterAmmount id="counterValue">{count}</ItemCounterAmmount>
+        <ItemCounterButton plus="true" onClick={() => {
+            if (count < stock) {
+                setCount(count + 1);
+            }
+        }} value='add'>+</ItemCounterButton>
       </ItemCounterSection>
       <AddToCartButton>
         Agregar al carrito
