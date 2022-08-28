@@ -46,7 +46,7 @@ const ItemCounterAmmount = styled.p`
   background-color: white;
 `;
 
-export const ItemCount = ({stock, initial}) => {
+export const ItemCount = ({ stock, initial }) => {
   const [count, setCount] = useState(initial);
   const [currentStock, setCurrentStock] = useState(stock);
   const prueba = (e) => {
@@ -64,6 +64,11 @@ export const ItemCount = ({stock, initial}) => {
 
       default:
         break;
+    }
+  };
+  const addToCart = (value) => {
+    if (value != 0) {
+      console.log(value);
     }
   };
   return (
@@ -89,7 +94,13 @@ export const ItemCount = ({stock, initial}) => {
           +
         </ItemCounterButton>
       </ItemCounterSection>
-      <AddToCartButton>Agregar al carrito</AddToCartButton>
+      <AddToCartButton
+        onClick={() => {
+          addToCart(count);
+        }}
+      >
+        Agregar al carrito
+      </AddToCartButton>
     </ConuterContainer>
   );
 };
