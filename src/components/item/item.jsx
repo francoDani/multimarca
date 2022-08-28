@@ -1,0 +1,42 @@
+import { useState } from "react";
+import styled from "styled-components";
+import { ItemCount } from "../itemCount/itemCount";
+
+const ConuterContainer = styled.div`
+  width: 250px;
+  background-color: #f5f5f5;
+  border: solid 1px white;
+  box-shadow: 0 0 5px gray;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  margin: 1rem;
+`;
+const ItemTittle = styled.h2`
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  font-size: 0.8rem;
+`;
+const ItemImg = styled.div`
+  background-image: url(${(props) => props.image});
+  width: 50%;
+  height: 10rem;
+  background-size: cover;
+  background-position: center;
+  margin: .5rem;
+`
+
+
+export const Item = ({productName, image, price, stock, initial }) => {
+  
+  return (
+    <ConuterContainer>
+      <ItemTittle>{productName}</ItemTittle>
+      <ItemImg image={image}/>
+      <p>${price}</p>
+      <ItemCount stock={stock} initial={initial}/>      
+    </ConuterContainer>
+  );
+};

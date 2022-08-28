@@ -1,14 +1,12 @@
 import './App.css';
 import Navbar from './components/NavBar/navbar';
-import { ItemListContainer } from './components/ItemListContainer/itemListContainer';
-import { ItemCount } from './components/itemCount/itemCount';
+import { ItemList } from './components/ItemList/itemList';
 
 function App() {
   return (
     <div className="App">
       <Navbar />
-      <ItemListContainer greeting= 'Federico'/>
-      <ItemCount stock= "3" initial= {0}/>
+      <ItemList greeting= 'Federico'/>
     </div>
   );
 }

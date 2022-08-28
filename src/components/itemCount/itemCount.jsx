@@ -1,30 +1,17 @@
 import { useState } from "react";
 import styled from "styled-components";
-import { AddToCartButton } from "./addToCartButton";
+import { AddToCartButton } from "../item/addToCartButton";
 
-const ConuterContainer = styled.div`
-  width: 250px;
-  height: 130px;
-  background-color: #f5f5f5;
-  border: solid 1px white;
-  box-shadow: 0 0 5px gray;
-  border-radius: 10px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-around;
-`;
-const ItemTittle = styled.h2`
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
-    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
-  font-size: 0.8rem;
-`;
+
+
+
 const ItemCounterSection = styled.div`
   width: 100%;
   height: 1.5rem;
   display: flex;
   justify-content: center;
   align-items: center;
+  margin: .3rem;
 `;
 const ItemCounterButton = styled.button`
   width: 30px;
@@ -32,6 +19,7 @@ const ItemCounterButton = styled.button`
   text-align: center;
   font-size: 1rem;
   border: none;
+  margin: .2rem;
   cursor: pointer;
   background-color: ${(props) =>
     props.plus ? "var(--light-green)" : "var(--light-red)"};
@@ -46,10 +34,10 @@ const ItemCounterAmmount = styled.p`
   background-color: white;
 `;
 
-export const ItemCount = ({ stock, initial }) => {
+export const ItemCount = ({initial, stock}) => {
   const [count, setCount] = useState(initial);
   const [currentStock, setCurrentStock] = useState(stock);
-  const prueba = (e) => {
+  const counting = (e) => {
     switch (e) {
       case "add":
         if (count < currentStock) {
@@ -67,17 +55,16 @@ export const ItemCount = ({ stock, initial }) => {
     }
   };
   const addToCart = (value) => {
-    if (value != 0) {
+    if (value !== 0) {
       console.log(value);
     }
   };
   return (
-    <ConuterContainer>
-      <ItemTittle>Gracia Smg-2031</ItemTittle>
+    <>
       <ItemCounterSection>
         <ItemCounterButton
           onClick={() => {
-            prueba("sub");
+            counting("sub");
           }}
           value="subtract"
         >
@@ -87,7 +74,7 @@ export const ItemCount = ({ stock, initial }) => {
         <ItemCounterButton
           plus="true"
           onClick={() => {
-            prueba("add");
+            counting("add");
           }}
           value="add"
         >
@@ -101,6 +88,6 @@ export const ItemCount = ({ stock, initial }) => {
       >
         Agregar al carrito
       </AddToCartButton>
-    </ConuterContainer>
+    </>
   );
 };
