@@ -2,7 +2,6 @@ import { useState } from "react";
 import styled from "styled-components";
 import { AddToCartButton } from "./addToCartButton";
 
-
 const ConuterContainer = styled.div`
   width: 250px;
   height: 130px;
@@ -34,7 +33,8 @@ const ItemCounterButton = styled.button`
   font-size: 1rem;
   border: none;
   cursor: pointer;
-  background-color: ${(props) => (props.plus ? "var(--light-green)" : "var(--light-red)")};
+  background-color: ${(props) =>
+    props.plus ? "var(--light-green)" : "var(--light-red)"};
   &:hover {
   }
 `;
@@ -46,28 +46,50 @@ const ItemCounterAmmount = styled.p`
   background-color: white;
 `;
 
-export const ItemCount = () => {
-    const [count, setCount] = useState(0);
-    const [stock, setStock] = useState(10);
+export const ItemCount = ({stock, initial}) => {
+  const [count, setCount] = useState(initial);
+  const [currentStock, setCurrentStock] = useState(stock);
+  const prueba = (e) => {
+    switch (e) {
+      case "add":
+        if (count < currentStock) {
+          setCount(count + 1);
+        }
+        break;
+      case "sub":
+        if (count > 0) {
+          setCount(count - 1);
+        }
+        break;
+
+      default:
+        break;
+    }
+  };
   return (
     <ConuterContainer>
       <ItemTittle>Gracia Smg-2031</ItemTittle>
       <ItemCounterSection>
-        <ItemCounterButton onClick={() => {
-            if (count > 0) {
-                setCount(count - 1);
-            }
-        }} value='subtract'>-</ItemCounterButton>
+        <ItemCounterButton
+          onClick={() => {
+            prueba("sub");
+          }}
+          value="subtract"
+        >
+          -
+        </ItemCounterButton>
         <ItemCounterAmmount id="counterValue">{count}</ItemCounterAmmount>
-        <ItemCounterButton plus="true" onClick={() => {
-            if (count < stock) {
-                setCount(count + 1);
-            }
-        }} value='add'>+</ItemCounterButton>
+        <ItemCounterButton
+          plus="true"
+          onClick={() => {
+            prueba("add");
+          }}
+          value="add"
+        >
+          +
+        </ItemCounterButton>
       </ItemCounterSection>
-      <AddToCartButton>
-        Agregar al carrito
-      </AddToCartButton>
+      <AddToCartButton>Agregar al carrito</AddToCartButton>
     </ConuterContainer>
   );
 };
