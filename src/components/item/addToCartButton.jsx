@@ -1,14 +1,17 @@
 import styled from "styled-components";
 
 export const AddToCartButton = styled.a`
-    border: solid 1px var(--shiny-green);
+    background-color: var(--blue);
     border-radius: 3px;
-    padding: 3px;
+    padding: .5rem;
+    margin: .3rem;
     font-size: .8rem;
+    font-weight: 600;
     cursor: pointer;
+    color: white;
     transition: all .3s;
     &:hover {
-        background-color: var(--shiny-green);
+        background-color:#1972f8;
         color: white;
     }
 `

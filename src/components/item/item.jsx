@@ -2,7 +2,7 @@ import { useState } from "react";
 import styled from "styled-components";
 import { ItemCount } from "../itemCount/itemCount";
 
-const ConuterContainer = styled.div`
+const ItemContainer = styled.div`
   width: 250px;
   background-color: #f5f5f5;
   border: solid 1px white;
@@ -13,6 +13,11 @@ const ConuterContainer = styled.div`
   align-items: center;
   justify-content: space-around;
   margin: 1rem;
+  cursor: pointer;
+  transition: all .5s;
+  &:hover {
+    transform: scale(1.01);
+  }
 `;
 const ItemTittle = styled.h2`
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
@@ -32,11 +37,11 @@ const ItemImg = styled.div`
 export const Item = ({productName, image, price, stock, initial }) => {
   
   return (
-    <ConuterContainer>
+    <ItemContainer>
       <ItemTittle>{productName}</ItemTittle>
       <ItemImg image={image}/>
       <p>${price}</p>
       <ItemCount stock={stock} initial={initial}/>      
-    </ConuterContainer>
+    </ItemContainer>
   );
 };
