@@ -12,12 +12,23 @@ const LogoImg = styled.div`
   height: 4rem;
   background-size: cover;
   background-position: center;
+  cursor: pointer;
+  position: relative;
 `;
+const Home = styled.a`
+    background-color: transparent;
+    width: 100%;
+    height: 100%;
+    z-index: 50;
+    position: absolute;
+    top: 0;
+    left: 0;
+`
 
 export const Logo = () => {
     return(
         <LogoContainer>
-            <LogoImg />
+            <LogoImg><Home href="/"/></LogoImg>
         </LogoContainer>
     )
 }

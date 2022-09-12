@@ -7,6 +7,7 @@ export const AddToCartButton = styled.a`
     margin: .3rem;
     font-size: .8rem;
     font-weight: 600;
+    z-index: 11;
     cursor: pointer;
     color: white;
     transition: all .3s;

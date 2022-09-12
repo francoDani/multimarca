@@ -9,13 +9,34 @@ const Container = styled.div`
   flex-wrap: wrap;
   min-height: 100vh;
 `;
-export const ItemList = () => {
+export const ItemList = ({category}) => {
   const [products, setProducts] = useState([]);
+  const [searchCategory, setSearchCategory] = useState();  
 
+  const setCategory = (category) => {
+    switch (category) {
+      case "classical":
+        setSearchCategory(`guitarra+gracia+clasica`);
+        break;
+      case "acustic":
+        setSearchCategory(`guitarra+gracia+acustica`);
+        break;
+      case "electric":
+        setSearchCategory(`guitarra+electrica+fender`);
+        break;
+      case "ukelele":
+        setSearchCategory(`ukelele`);
+        break;
+      default:
+        setSearchCategory(`guitarra+gracia`);
+        break;
+    }
+  }
   const getProducts = async () => {
+    setCategory(category);
     try {
       const response = await fetch(
-        "https://api.mercadolibre.com/sites/MLA/search?q=guitarra+fender"
+        `https://api.mercadolibre.com/sites/MLA/search?q=${searchCategory}`
       );
       const data = await response.json();
       setProducts(data.results);
@@ -25,10 +46,10 @@ export const ItemList = () => {
   };
   useEffect(() => {
     getProducts();
-  }, []);
+  }, [getProducts]);
   return (
     <Container>
-      {products.map(function (product, index) {
+      { products.map(function (product, index) {
         return (
           <Item
             productName={product.title}
@@ -37,6 +58,7 @@ export const ItemList = () => {
             stock={product.available_quantity}
             initial={0}
             key= {index}
+            id={product.id}
           />
         );
       })}

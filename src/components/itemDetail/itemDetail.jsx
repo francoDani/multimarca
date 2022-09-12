@@ -22,7 +22,7 @@ const ItemImg = styled.div`
 const DescriptionContainer = styled.div`
     width: 30%;
     min-height: 500px;
-    border: 1px solid #dedede;
+    border: 1px solid #777777;
     border-radius: 5px;
 `;
 const ProductName = styled.h1`
@@ -35,7 +35,7 @@ const ConditionStock = styled.p`
     font-size: .7rem;
     text-align: left;
     margin: .5rem 0 0 .3rem;
-    color: #dedede;
+    color: #777777;
 `
 const ProductPrice = styled.p`
     font-size: 1.3rem;
@@ -47,6 +47,9 @@ const ProductDescription = styled.p`
     padding: 3rem .5rem .2rem .45em;
     text-align: justify;
     margin-bottom: 1rem;
+    max-height: 40vh;
+    overflow-y: scroll;
+    overflow-x: hidden;
 `
 
 export const ItemDetail = ({ product, productDetail }) => {

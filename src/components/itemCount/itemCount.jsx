@@ -12,6 +12,7 @@ const ItemCounterSection = styled.div`
   justify-content: center;
   align-items: center;
   margin: .3rem;
+  z-index: 11;
 `;
 const ItemCounterButton = styled.button`
   width: 30px;

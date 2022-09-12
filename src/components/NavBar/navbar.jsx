@@ -42,6 +42,10 @@ const UlNavigation = styled.ul`
     }
   }
 `;
+const NavigationItem = styled.a`
+  text-decoration: none;
+  color: black;
+`
 const Navbar = () => {
   return (
     <Nav>
@@ -52,10 +56,10 @@ const Navbar = () => {
       </Search>
       <UlContainer>
         <UlNavigation>
-          <ul>Classical</ul>
-          <ul>Acustic</ul>
-          <ul>Electric</ul>
-          <ul>Ukelele</ul>
+          <ul><NavigationItem href="/category/classical">Classical</NavigationItem></ul>
+          <ul><NavigationItem href="/category/acustic">Acustic</NavigationItem></ul>
+          <ul><NavigationItem href="/category/electric">Electric</NavigationItem></ul>
+          <ul><NavigationItem href="/category/ukelele">Ukelele</NavigationItem></ul>
           <ul>Sale!!</ul>
         </UlNavigation>
       </UlContainer>
