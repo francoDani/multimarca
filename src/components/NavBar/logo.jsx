@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 import logo from "../../img/logo.png";
 
@@ -8,27 +9,19 @@ const LogoContainer = styled.div`
 `
 const LogoImg = styled.div`
   background-image: url(${logo});
-  width: 10rem;
+  width: 9rem;
   height: 4rem;
   background-size: cover;
   background-position: center;
+  position: absolute;
   cursor: pointer;
   position: relative;
 `;
-const Home = styled.a`
-    background-color: transparent;
-    width: 100%;
-    height: 100%;
-    z-index: 50;
-    position: absolute;
-    top: 0;
-    left: 0;
-`
 
 export const Logo = () => {
     return(
         <LogoContainer>
-            <LogoImg><Home href="/"/></LogoImg>
+            <Link to="/"><LogoImg></LogoImg></Link>
         </LogoContainer>
     )
 }

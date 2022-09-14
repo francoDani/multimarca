@@ -20,7 +20,7 @@ const CartButton = styled.button`
     cursor: pointer;
 `;
 const FontAwesomeIconStyled = styled(FontAwesomeIcon)`
-    font-size: 1.2rem;
+    font-size: .8rem;
     margin-right: 1rem;    
 `;
 

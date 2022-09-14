@@ -17,11 +17,11 @@ export const ItemDetailbox = styled.div`
   align-items: center;
 `;
 
-export const ItemDetailContainer = () => {
-  let itemsearch = "guitarra+gracia";
+export const ItemDetailContainer = () => {  
   const { id } = useParams();
   const [product, setproduct] = useState([]);
-  const [itemID, setItemID] = useState(id);
+  const [imgURL, setImgURL] = useState();
+
   const [productDetail, setPorductDetail] = useState("");
   const getItem = async () => {
     try {
@@ -30,8 +30,9 @@ export const ItemDetailContainer = () => {
       );
       const data = await response.json();
       setproduct(data);
+      setImgURL(data.pictures[0].url)
       const detailResponse = await fetch(
-        `https://api.mercadolibre.com/items/${itemID}/description`
+        `https://api.mercadolibre.com/items/${id}/description`
       );
       const detailData = await detailResponse.json();
       setPorductDetail(detailData.plain_text);
@@ -45,7 +46,7 @@ export const ItemDetailContainer = () => {
   }, []);
   return (
     <ItemDetailbox>
-      <ItemDetail product={product} productDetail={productDetail} />
+      <ItemDetail product={product} productDetail={productDetail} img={imgURL}/>
     </ItemDetailbox>
   );
 };

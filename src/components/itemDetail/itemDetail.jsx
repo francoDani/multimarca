@@ -1,5 +1,6 @@
+import { useState } from "react";
 import styled from "styled-components";
-import { AddToCartButton } from "../item/addToCartButton";
+import { ItemCount } from "../itemCount/itemCount";
 
 const ItemDetailSection = styled.div`
   width: 90vw;
@@ -52,16 +53,17 @@ const ProductDescription = styled.p`
     overflow-x: hidden;
 `
 
-export const ItemDetail = ({ product, productDetail }) => {
+export const ItemDetail = ({ product, productDetail, img }) => {
+  const [quantity, setQuantity] = useState(0);
   return (
     <ItemDetailSection>
-      <ItemImg image={product.thumbnail} />
+      <ItemImg image={img} />
       <DescriptionContainer>
         <ConditionStock>Estado {product.condition} | Vendidos {product.sold_quantity}</ConditionStock>
         <ProductName>{product.title}</ProductName>
         <ProductPrice>$ {product.price}</ProductPrice>
         <ProductDescription>{productDetail}</ProductDescription>
-        <AddToCartButton>Agregar al carrito</AddToCartButton> 
+        <ItemCount initial={quantity} stock={product.available_quantity} route={'cart'} />
         <ConditionStock>Stock disponible: {product.available_quantity}</ConditionStock>
       </DescriptionContainer>
     </ItemDetailSection>

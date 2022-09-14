@@ -1,9 +1,7 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { AddToCartButton } from "../item/addToCartButton";
-
-
-
 
 const ItemCounterSection = styled.div`
   width: 100%;
@@ -11,7 +9,7 @@ const ItemCounterSection = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: .3rem;
+  margin: 0.3rem;
   z-index: 11;
 `;
 const ItemCounterButton = styled.button`
@@ -20,7 +18,7 @@ const ItemCounterButton = styled.button`
   text-align: center;
   font-size: 1rem;
   border: none;
-  margin: .2rem;
+  margin: 0.2rem;
   cursor: pointer;
   background-color: ${(props) =>
     props.plus ? "var(--light-green)" : "var(--light-red)"};
@@ -35,13 +33,12 @@ const ItemCounterAmmount = styled.p`
   background-color: white;
 `;
 
-export const ItemCount = ({initial, stock}) => {
+export const ItemCount = ({ initial, stock, route }) => {
   const [count, setCount] = useState(initial);
-  const [currentStock, setCurrentStock] = useState(stock);
   const counting = (e) => {
     switch (e) {
       case "add":
-        if (count < currentStock) {
+        if (count < stock) {
           setCount(count + 1);
         }
         break;
@@ -82,13 +79,15 @@ export const ItemCount = ({initial, stock}) => {
           +
         </ItemCounterButton>
       </ItemCounterSection>
-      <AddToCartButton
-        onClick={() => {
-          addToCart(count);
-        }}
-      >
-        Agregar al carrito
-      </AddToCartButton>
+      <Link to={"/"+route}>
+        <AddToCartButton
+          onClick={() => {
+            addToCart(count);
+          }}
+        >
+          Agregar al carrito
+        </AddToCartButton>
+      </Link>
     </>
   );
 };

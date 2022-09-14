@@ -3,11 +3,13 @@
   text-align: center;
 }
 :root {
-  --bg1: #343131;
-  --white: #ebe7e7;
-  --light-red: rgb(255, 86, 86);
-  --light-green: rgb(87, 148, 87);
-  --blue: #3483fa;
+  --dark-gray: #2B4141;
+  --light-gray: #c7c2c2;
+  --white: #e9fbff;
+  --blue: #0496FF;
+  --light-green: #00A878;
+  --yellow: #F4B266;
+  --light-red: rgb(255, 62, 62);
 }
 * {
   margin: 0;
@@ -47,4 +49,8 @@
   to {
     transform: rotate(360deg);
   }
+}
+a {
+  text-decoration: none;
+  color: var(--dark-gray);  
 }

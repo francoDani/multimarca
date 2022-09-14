@@ -1,5 +1,4 @@
-import { useEffect } from "react";
-import { useState } from "react";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { ItemCount } from "../itemCount/itemCount";
 
@@ -34,30 +33,17 @@ const ItemImg = styled.div`
   background-position: center;
   margin: .5rem;
 `
-const Details = styled.a`
-  border: solid 1px gray;
-  border-radius: 5px;
-  padding: 0 .5rem;
-  text-decoration: none;
-  color: black;
-`
-const Navigation = styled.a`
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  background-color: transparent;
-  z-index: 10;
-`
 
 export const Item = ({productName, image, price, stock, initial, id }) => {
   return (
     <ItemContainer>
-      <Navigation href={`/item/${id}`}/>
       <ItemTittle>{productName}</ItemTittle>
       <ItemImg image={image}/>
       <p>${price}</p>
-      <ItemCount stock={stock} initial={initial}/>
-      <Details href={`/item/${id}`}>Detalles</Details>  
+      <ItemCount stock={stock} initial={initial} route={`item/${id}`} onAdd={() => {
+        console.log("adding")
+      }}/>
+      <Link to={`/item/${id}`}>Detalles</Link>      
     </ItemContainer>
   );
 };
