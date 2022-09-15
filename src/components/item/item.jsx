@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { ItemCount } from "../itemCount/itemCount";
+import { AddToCartButton } from "./addToCartButton";
 
 const ItemContainer = styled.div`
   width: 250px;
@@ -43,7 +44,12 @@ export const Item = ({productName, image, price, stock, initial, id }) => {
       <ItemCount stock={stock} initial={initial} route={`item/${id}`} onAdd={() => {
         console.log("adding")
       }}/>
-      <Link to={`/item/${id}`}>Detalles</Link>      
+      <Link to={`/item/${id}`}>
+        <AddToCartButton>
+          Agregar al carrito
+        </AddToCartButton>
+      </Link>      
+      <Link to={`/item/${id}`}>Detalles</Link>
     </ItemContainer>
   );
 };

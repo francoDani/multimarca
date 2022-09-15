@@ -1,7 +1,5 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
 import styled from "styled-components";
-import { AddToCartButton } from "../item/addToCartButton";
 
 const ItemCounterSection = styled.div`
   width: 100%;
@@ -33,18 +31,20 @@ const ItemCounterAmmount = styled.p`
   background-color: white;
 `;
 
-export const ItemCount = ({ initial, stock, route }) => {
+export const ItemCount = ({ initial, stock, route, value }) => {
   const [count, setCount] = useState(initial);
   const counting = (e) => {
     switch (e) {
       case "add":
         if (count < stock) {
           setCount(count + 1);
+          value(count + 1)
         }
         break;
       case "sub":
         if (count > 0) {
           setCount(count - 1);
+          value(count - 1);
         }
         break;
 
@@ -79,15 +79,7 @@ export const ItemCount = ({ initial, stock, route }) => {
           +
         </ItemCounterButton>
       </ItemCounterSection>
-      <Link to={"/"+route}>
-        <AddToCartButton
-          onClick={() => {
-            addToCart(count);
-          }}
-        >
-          Agregar al carrito
-        </AddToCartButton>
-      </Link>
+      
     </>
   );
 };
