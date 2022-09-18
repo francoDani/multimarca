@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { ItemCount } from "../itemCount/itemCount";
 import { AddToCartButton } from "../item/addToCartButton";
+import { useContext } from "react";
+import { CartContext } from "../../Context/CartContext";
 
 const ItemDetailSection = styled.div`
   width: 90vw;
@@ -58,6 +60,7 @@ const ProductDescription = styled.p`
 
 export const ItemDetail = ({ product, productDetail, img }) => {
   const [quantity, setQuantity] = useState(0);  
+  const {addItem} = useContext(CartContext);
   const onAdd = (val) => {
     setQuantity(val);
   };
@@ -80,7 +83,8 @@ export const ItemDetail = ({ product, productDetail, img }) => {
           />
         ) : (
           <Link to={"/" + "cart"}>
-            <AddToCartButton>Terminar mi compra</AddToCartButton>
+            <AddToCartButton onClick={() => {
+              addItem(product.title, quantity, product.id, product.price, img)}}>Terminar mi compra</AddToCartButton>
           </Link>
         )}
 
