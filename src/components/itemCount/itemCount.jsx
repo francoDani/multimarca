@@ -52,11 +52,6 @@ export const ItemCount = ({ initial, stock, route, value }) => {
         break;
     }
   };
-  const addToCart = (value) => {
-    if (value !== 0) {
-      console.log(value);
-    }
-  };
   return (
     <>
       <ItemCounterSection>

@@ -41,9 +41,7 @@ export const Item = ({productName, image, price, stock, initial, id }) => {
       <ItemTittle>{productName}</ItemTittle>
       <ItemImg image={image}/>
       <p>${price}</p>
-      <ItemCount stock={stock} initial={initial} route={`item/${id}`} onAdd={() => {
-        console.log("adding")
-      }}/>
+      <ItemCount stock={stock} initial={initial} route={`item/${id}`}/>
       <Link to={`/item/${id}`}>
         <AddToCartButton>
           Agregar al carrito

@@ -5,6 +5,9 @@ import { useContext } from "react";
 import styled from "styled-components";
 import { CartContext } from "../../Context/CartContext";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
+import EmptyCart from "./emptyCart";
+import { Link } from "react-router-dom";
+import FinishBuy from "../finishBuy/finishBuy";
 
 const CartBox = styled.div`
   background-color: white;
@@ -12,6 +15,7 @@ const CartBox = styled.div`
   border-radius: 3px;
   margin-top: 2rem;
   box-shadow: 0 0 10px var(--light-gray);
+  margin-bottom:5rem;
 `;
 const Tabs = styled.div`
   width: 100%;
@@ -54,26 +58,45 @@ const TD = styled.td`
   width: 20%;
 `;
 
+const DeleteBtn = styled.button`
+  border: none;
+  width: 100%;
+  cursor: pointer;
+`;
+const DeleteAll = styled.button`
+  margin: 1rem;
+  padding: .5rem;
+  border-radius: 5px;
+  border: 1px solid var(--light-red);
+  color: var(--light-red);
+  font-weight: bold;
+  background-color: var(--white);
+  transition: .5s;
+  cursor: pointer;
+  &:hover{
+    background-color: var(--light-red);
+    color: white;
+  }
+`
+const GoToShop = styled.button`
+  margin: 1rem;
+  padding: .5rem;
+  border-radius: 5px;
+  border: 1px solid var(--light-green);
+  color: var(--light-green);
+  font-weight: bold;
+  background-color: var(--white);
+  transition: .5s;
+  cursor: pointer;
+  &:hover{
+    background-color: var(--light-green);
+    color: white;
+  }
+`
+
 const ItemCartContainer = () => {
-  const { cart, deleteThis, removeAll } = useContext(CartContext);
-  const [onCar, setOncar] = useState();
-  const onCart = (item) => {
-    if (item === []) {
-      setOncar(false);
-    } else {
-      setOncar(true);
-    }
-  };
+  const { cart, deleteThis, removeAll, isOn } = useContext(CartContext);
 
-  const DeleteBtn = styled.button`
-    border: none;
-    width: 100%;
-    cursor: pointer;
-  `;
-
-  useEffect(() => {
-    onCart(cart);
-  }, [cart]);
   return (
     <CartBox>
       <Tabs>
@@ -81,44 +104,50 @@ const ItemCartContainer = () => {
         <TabsBtns>Favoritos</TabsBtns>
       </Tabs>
       <CartListing>
-        <ProductTable>
-          <tr>
-            <th>Image</th>
-            <th>Product</th>
-            <th>Quantity</th>
-            <th>Price</th>
-            <th>Subtotal</th>
-            <th>Delete</th>
-          </tr>
-          <tbody>
-            {onCar ? cart.map(function (product, index) {
-              return (
-                <tr>
-                  <TD>
-                    <ItemImg image={product.img} />
-                  </TD>
-                  <TD>
-                    <ItemName>{product.name}</ItemName>
-                  </TD>
-                  <TD>{product.quantity}</TD>
-                  <TD>{product.price}</TD>
-                  <TD>{product.quantity * product.price}</TD>
-                  <TD>
-                    <DeleteBtn onClick={()=>{
-                      deleteThis(product.id)  
-                    }}>
-                      <FontAwesomeIcon icon={faTrash} />
-                    </DeleteBtn>
-                  </TD>
-                </tr>
-              );
-            }) : <h1>No tienes nada en tu carrito</h1>}
-          </tbody>
-        </ProductTable>
-        <button onClick={()=>{
-            removeAll();
-        }}>Borrar todo</button>
+        {isOn ? (
+          <ProductTable>
+            <tr>
+              <th>Image</th>
+              <th>Product</th>
+              <th>Quantity</th>
+              <th>Price</th>
+              <th>Subtotal</th>
+              <th>Delete</th>
+            </tr>
+            <tbody>
+              {cart.map(function (product, index) {
+                return (
+                  <tr key={index}>
+                    <TD>
+                      <ItemImg image={product.img} />
+                    </TD>
+                    <TD>
+                      <ItemName>{product.name}</ItemName>
+                    </TD>
+                    <TD>{product.quantity}</TD>
+                    <TD>{product.price}</TD>
+                    <TD>{product.total}</TD>
+                    <TD>
+                      <DeleteBtn
+                        onClick={() => {
+                          deleteThis(product.id, product.total);
+                        }}
+                      >
+                        <FontAwesomeIcon icon={faTrash} />
+                      </DeleteBtn>
+                    </TD>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </ProductTable>
+        ) : (
+          <EmptyCart />
+        )}
+        {isOn ? <DeleteAll onClick={removeAll}>Borrar todo</DeleteAll> : <Link to= "/"><GoToShop>Ir a comprar</GoToShop></Link>}
       </CartListing>
+      {isOn ? <FinishBuy /> : ""}
+      
     </CartBox>
   );
 };

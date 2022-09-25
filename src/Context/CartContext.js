@@ -1,20 +1,30 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 const CartContext = React.createContext();
 
 const CartProvider = ({ children }) => {
   const [cart, setCart] = useState([]);
-
+  const [isOn, setIsOn] = useState();
+  const [totalShop, setTotalShop] = useState(0);
   const removeAll = () => {
     setCart([]);
+    check();
+    setTotalShop(0)
   }
-
-  const deleteThis = (id) => {    
-    const indexOf = cart.findIndex(element => {
+  const check = () => {
+    if(cart.length === 0) {
+      setIsOn(false);
+    }else{setIsOn(true);}
+  }
+  const deleteThis = (id, price) => {
+    /* const indexOf = cart.findIndex(element => {
         return element.id === id;
-    })
-    cart.splice(indexOf, 1);    
-    setCart(cart);
+    })       */
+    let filter = cart.filter(e=> e.id !== id);
+    filter.forEach(f => cart.splice(cart.findIndex(e => e.id === f.id),1));
+    setTotalShop(totalShop - price)
+    setCart(filter);
+    check();    
   }
 
   /**
@@ -42,17 +52,22 @@ const CartProvider = ({ children }) => {
       price: price,
       quantity: quantity,
       img: img,
-      id: id
+      id: id,
+      total: price * quantity
     };
+    let calc = price * quantity;
     let carrito = cart;
     carrito.push(newProduct);
-    carrito = isReapeated(carrito);
-    console.log(carrito);
-    setCart(carrito);    
+    carrito = isReapeated(carrito);    
+    setCart(carrito);
+    setTotalShop(totalShop + calc)
   };
+  useEffect(() => {
+    check()
+  },[cart])
 
   return (
-    <CartContext.Provider value={{ addItem, cart, deleteThis, removeAll }}>
+    <CartContext.Provider value={{ addItem, cart, deleteThis, removeAll, isOn, totalShop }}>
       {children}
     </CartContext.Provider>
   );

@@ -74,13 +74,13 @@ export const ItemDetail = ({ product, productDetail, img }) => {
         <ProductName>{product.title}</ProductName>
         <ProductPrice>$ {product.price}</ProductPrice>
         <ProductDescription>{productDetail}</ProductDescription>
-
-        {quantity === 0 ? (
-          <ItemCount
+        <ItemCount
             initial={quantity}
             stock={product.available_quantity}
             value={onAdd}
           />
+        {quantity === 0 ? (
+          <></>
         ) : (
           <Link to={"/" + "cart"}>
             <AddToCartButton onClick={() => {
