@@ -47,20 +47,35 @@ const CartProvider = ({ children }) => {
    * @param {number} quantity this is the quantity o the product you want to add to the cart
    */
   const addItem = (item, quantity, id, price, img) => {
-    let newProduct = {
-      name: item,
-      price: price,
-      quantity: quantity,
-      img: img,
-      id: id,
-      total: price * quantity
-    };
-    let calc = price * quantity;
-    let carrito = cart;
-    carrito.push(newProduct);
-    carrito = isReapeated(carrito);    
-    setCart(carrito);
-    setTotalShop(totalShop + calc)
+    let result = cart.findIndex(products => products.id==id);
+    if(result === -1){
+      let newProduct = {
+        name: item,
+        price: price,
+        quantity: quantity,
+        img: img,
+        id: id,
+        total: price * quantity
+      };
+      let calc = price * quantity;
+      let carrito = cart;
+      carrito.push(newProduct);
+      carrito = isReapeated(carrito);    
+      setCart(carrito);
+      setTotalShop(totalShop + calc)
+    }else {
+      let newCart = cart;
+      newCart[result].quantity = newCart[result].quantity + quantity;
+      newCart[result].total = newCart[result].quantity * price;
+      setCart(newCart);
+      let asd = 0;
+      cart.map((prod) => {
+        let actual = prod.total;
+        asd = asd + actual;
+      })
+      setTotalShop(+(asd))
+    }
+    
   };
   useEffect(() => {
     check()
