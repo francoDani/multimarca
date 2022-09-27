@@ -36,7 +36,6 @@ const Quantiy = styled.p`
   text-align: center;
   background-color: var(--dark-gray);
   color: white;
-  
 `
 
 export const CartWidwet = () => {
@@ -45,7 +44,7 @@ export const CartWidwet = () => {
   return (
     <CartButtonContainer>
       <Link to={"/cart"}>
-        <CartButton>
+        <CartButton style={cart.length === 0 ? {visibility: 'hidden'} : {visibility: 'visible'}}>
           <FontAwesomeIconStyled icon={faCartShopping} />
           Cart
           {isOn ? <Quantiy>{cart.length}</Quantiy> : ""}
