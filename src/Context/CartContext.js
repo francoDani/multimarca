@@ -46,14 +46,14 @@ const CartProvider = ({ children }) => {
    * @param {string} item this vale is the name of the product
    * @param {number} quantity this is the quantity o the product you want to add to the cart
    */
-  const addItem = (item, quantity, id, price, img) => {
+  const addItem = (item, quantity, id, price, image) => {
     let result = cart.findIndex(products => products.id==id);
     if(result === -1){
       let newProduct = {
         name: item,
         price: price,
         quantity: quantity,
-        img: img,
+        image: image,
         id: id,
         total: price * quantity
       };

@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import { useParams } from "react-router-dom"
 import styled from "styled-components";
 import { ItemList } from "../ItemList/itemList"
+import { collection, getDocs, getFirestore } from "firebase/firestore";
 
 const Container = styled.div`
     max-width: 100vw;
@@ -37,15 +38,12 @@ export const ItemListContainer = () => {
           return result;
     }
     /* Aqui tiene que venir el llamado a la API */
-    const getProducts = async () => {
-        try {            
-            const response = await fetch(URL + getCategory(categoryId));
-            const data = await response.json();
-            setProducts(data.results);            
-        } catch (error) {
-            console.log(error);
-        }        
-
+    const getProducts = () => {
+        const db = getFirestore();
+        const itemsCollection = collection(db, "items");
+        getDocs(itemsCollection).then((snapshot) => {
+            setProducts(snapshot.docs.map((doc) => ({id: doc.id, ...doc.data() })))
+        })
     }
     
     useEffect(() => {

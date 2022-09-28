@@ -17,9 +17,9 @@ export const ItemList = ({products}) => {
         return (
           <Item
             productName={product.title}
-            image={product.thumbnail}
+            image={product.image}
             price={product.price}
-            stock={product.available_quantity}
+            stock={product.stock}
             initial={0}
             key= {index}
             id={product.id}

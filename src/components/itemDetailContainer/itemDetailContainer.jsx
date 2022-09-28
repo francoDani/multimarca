@@ -1,3 +1,4 @@
+import { getDoc, doc, getFirestore} from "firebase/firestore";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
@@ -23,8 +24,15 @@ export const ItemDetailContainer = () => {
   const [imgURL, setImgURL] = useState();
 
   const [productDetail, setPorductDetail] = useState("");
-  const getItem = async () => {
-    try {
+  const getItem = () => {
+    const db = getFirestore();
+
+    const item = doc(db, "items", id);
+    getDoc(item).then((snapshot) => {
+      setproduct({id: snapshot.id, ...snapshot.data() });
+      
+    })
+    /* try {
       const response = await fetch(
         "https://api.mercadolibre.com/items/" + id
       );
@@ -38,7 +46,7 @@ export const ItemDetailContainer = () => {
       setPorductDetail(detailData.plain_text);
     } catch (e) {
       console.log("e");
-    }
+    } */
   };
 
   useEffect(() => {

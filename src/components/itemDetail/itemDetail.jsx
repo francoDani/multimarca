@@ -66,17 +66,17 @@ export const ItemDetail = ({ product, productDetail, img }) => {
   };
   return (
     <ItemDetailSection>
-      <ItemImg image={img} />
+      <ItemImg image={product.image} />
       <DescriptionContainer>
         <ConditionStock>
           Estado {product.condition} | Vendidos {product.sold_quantity}
         </ConditionStock>
         <ProductName>{product.title}</ProductName>
         <ProductPrice>$ {product.price}</ProductPrice>
-        <ProductDescription>{productDetail}</ProductDescription>
+        <ProductDescription>{product.description}</ProductDescription>
         <ItemCount
             initial={quantity}
-            stock={product.available_quantity}
+            stock={product.stock}
             value={onAdd}
           />
         {quantity === 0 ? (
@@ -84,12 +84,12 @@ export const ItemDetail = ({ product, productDetail, img }) => {
         ) : (
           <Link to={"/" + "cart"}>
             <AddToCartButton onClick={() => {
-              addItem(product.title, quantity, product.id, product.price, img)}}>Terminar mi compra</AddToCartButton>
+              addItem(product.title, quantity, product.id, product.price, product.image)}}>Terminar mi compra</AddToCartButton>
           </Link>
         )}
 
         <ConditionStock>
-          Stock disponible: {product.available_quantity}
+          Stock disponible: {product.stock}
         </ConditionStock>
       </DescriptionContainer>
     </ItemDetailSection>

@@ -41,7 +41,7 @@ const ProductTable = styled.table`
 `;
 const ItemImg = styled.div`
   background-image: url(${(props) => props.image});
-  width: 75px;
+  width: 100%;
   height: 150px;
   background-size: contain;
   background-repeat: no-repeat;
@@ -119,7 +119,7 @@ const ItemCartContainer = () => {
                 return (
                   <tr key={index}>
                     <TD>
-                      <ItemImg image={product.img} />
+                      <ItemImg image={product.image} />                      
                     </TD>
                     <TD>
                       <ItemName>{product.name}</ItemName>

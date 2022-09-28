@@ -30,7 +30,8 @@ const ItemImg = styled.div`
   background-image: url(${(props) => props.image});
   width: 50%;
   height: 10rem;
-  background-size: cover;
+  background-size: contain;
+  background-repeat: no-repeat;
   background-position: center;
   margin: .5rem;
 `
