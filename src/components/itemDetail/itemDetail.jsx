@@ -5,6 +5,8 @@ import { ItemCount } from "../itemCount/itemCount";
 import { AddToCartButton } from "../item/addToCartButton";
 import { useContext } from "react";
 import { CartContext } from "../../Context/CartContext";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 
 const ItemDetailSection = styled.div`
   width: 90vw;
@@ -15,6 +17,7 @@ const ItemDetailSection = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  position: relative;
 `;
 const ItemImg = styled.div`
   background-image: url(${(props) => props.image});
@@ -57,15 +60,32 @@ const ProductDescription = styled.p`
   overflow-y: scroll;
   overflow-x: hidden;
 `;
+const BackButton = styled.div`
+  width: 40px;
+  height: 40px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2rem;
+  color: var(--dark-gray);
+`;
 
-export const ItemDetail = ({ product, productDetail, img }) => {
-  const [quantity, setQuantity] = useState(0);  
-  const {addItem} = useContext(CartContext);
+export const ItemDetail = ({ product }) => {
+  const [quantity, setQuantity] = useState(0);
+  const { addItem } = useContext(CartContext);
   const onAdd = (val) => {
     setQuantity(val);
   };
   return (
     <ItemDetailSection>
+      <Link to={"/"}>
+        <BackButton>
+          <FontAwesomeIcon icon={faArrowLeft}></FontAwesomeIcon>
+        </BackButton>
+      </Link>
       <ItemImg image={product.image} />
       <DescriptionContainer>
         <ConditionStock>
@@ -74,23 +94,28 @@ export const ItemDetail = ({ product, productDetail, img }) => {
         <ProductName>{product.title}</ProductName>
         <ProductPrice>$ {product.price}</ProductPrice>
         <ProductDescription>{product.description}</ProductDescription>
-        <ItemCount
-            initial={quantity}
-            stock={product.stock}
-            value={onAdd}
-          />
+        <ItemCount initial={quantity} stock={product.stock} value={onAdd} />
         {quantity === 0 ? (
           <></>
         ) : (
           <Link to={"/" + "cart"}>
-            <AddToCartButton onClick={() => {
-              addItem(product.title, quantity, product.id, product.price, product.image)}}>Terminar mi compra</AddToCartButton>
+            <AddToCartButton
+              onClick={() => {
+                addItem(
+                  product.title,
+                  quantity,
+                  product.id,
+                  product.price,
+                  product.image
+                );
+              }}
+            >
+              Terminar mi compra
+            </AddToCartButton>
           </Link>
         )}
 
-        <ConditionStock>
-          Stock disponible: {product.stock}
-        </ConditionStock>
+        <ConditionStock>Stock disponible: {product.stock}</ConditionStock>
       </DescriptionContainer>
     </ItemDetailSection>
   );

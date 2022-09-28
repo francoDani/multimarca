@@ -25,6 +25,12 @@ const ItemTittle = styled.h2`
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
     Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
   font-size: 0.8rem;
+  overflow: hidden;
+  max-height: 1rem;
+  transition: .5s;
+  &:hover{
+    max-height: 2rem;
+  }
 `;
 const ItemImg = styled.div`
   background-image: url(${(props) => props.image});

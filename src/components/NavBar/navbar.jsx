@@ -60,9 +60,9 @@ const Navbar = () => {
       </Search>
       <UlContainer>
         <UlNavigation>          
-          <ul><Link to="/category/classical">Classical</Link></ul>
-          <ul><Link to="/category/acustic">Acustic</Link></ul>
-          <ul><Link to="/category/electric">Electric</Link></ul>
+          <ul><Link to="/category/clasica">Classical</Link></ul>
+          <ul><Link to="/category/acustica">Acustic</Link></ul>
+          <ul><Link to="/category/electrica">Electric</Link></ul>
           <ul><Link to="/category/ukelele">Ukelele</Link></ul>
           <ul>Sale!!</ul>
         </UlNavigation>
