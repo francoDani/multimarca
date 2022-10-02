@@ -72,6 +72,39 @@ const BackButton = styled.div`
   font-size: 2rem;
   color: var(--dark-gray);
 `;
+const LoaderItem = styled.span`
+  width: 38px;
+  height: 38px;
+  display: inline-block;
+  position: relative;
+&::after,
+&::before {
+  content: '';  
+  box-sizing: border-box;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  border: 2px solid var(--blue);
+  position: absolute;
+  left: 0;
+  top: 0;
+  animation: animloader 2s linear infinite;
+}
+&::after {
+  animation-delay: 1s;
+}
+
+@keyframes animloader {
+  0% {
+    transform: scale(0);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 0;
+  }
+}
+`
 
 export const ItemDetail = ({ product }) => {
   const [quantity, setQuantity] = useState(0);
@@ -86,12 +119,12 @@ export const ItemDetail = ({ product }) => {
           <FontAwesomeIcon icon={faArrowLeft}></FontAwesomeIcon>
         </BackButton>
       </Link>
-      <ItemImg image={product.image} />
+      {!product.image ? <LoaderItem /> : <ItemImg image={product.image} />}      
       <DescriptionContainer>
         <ConditionStock>
           Estado {product.condition} | Vendidos {product.sold_quantity}
         </ConditionStock>
-        <ProductName>{product.title}</ProductName>
+        {!product.title ? <LoaderItem /> : <ProductName>{product.title}</ProductName>}        
         <ProductPrice>$ {product.price}</ProductPrice>
         <ProductDescription>{product.description}</ProductDescription>
         <ItemCount initial={quantity} stock={product.stock} value={onAdd} />

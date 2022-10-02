@@ -21,9 +21,7 @@ export const ItemDetailbox = styled.div`
 export const ItemDetailContainer = () => {  
   const { id } = useParams();
   const [product, setproduct] = useState([]);
-  const [imgURL, setImgURL] = useState();
-
-  const [productDetail, setPorductDetail] = useState("");
+  
   const getItem = () => {
     const db = getFirestore();
 
@@ -32,21 +30,6 @@ export const ItemDetailContainer = () => {
       setproduct({id: snapshot.id, ...snapshot.data() });
       
     })
-    /* try {
-      const response = await fetch(
-        "https://api.mercadolibre.com/items/" + id
-      );
-      const data = await response.json();
-      setproduct(data);
-      setImgURL(data.pictures[0].url)
-      const detailResponse = await fetch(
-        `https://api.mercadolibre.com/items/${id}/description`
-      );
-      const detailData = await detailResponse.json();
-      setPorductDetail(detailData.plain_text);
-    } catch (e) {
-      console.log("e");
-    } */
   };
 
   useEffect(() => {
@@ -54,7 +37,7 @@ export const ItemDetailContainer = () => {
   }, []);
   return (
     <ItemDetailbox>
-      <ItemDetail product={product} productDetail={productDetail} img={imgURL}/>
+      <ItemDetail product={product} />
     </ItemDetailbox>
   );
 };
