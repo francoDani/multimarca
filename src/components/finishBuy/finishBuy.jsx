@@ -29,10 +29,10 @@ const Finish = styled.button`
 `;
 
 const FinishBuy = () => {
-    const {totalShop} = useContext(CartContext);
+    const {totalShop, createOrder} = useContext(CartContext);
   return (
     <FinishContainer>
-      <Finish>Ir a pagar</Finish>
+      <Finish >Ir a pagar</Finish>
       <h1>Total: {totalShop.toFixed(2)}</h1>
     </FinishContainer>
   );

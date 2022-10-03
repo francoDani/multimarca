@@ -146,7 +146,7 @@ const ItemCartContainer = () => {
         )}
         {isOn ? <DeleteAll onClick={removeAll}>Borrar todo</DeleteAll> : <Link to= "/"><GoToShop>Ir a comprar</GoToShop></Link>}
       </CartListing>
-      {isOn ? <FinishBuy /> : ""}
+      {isOn ? <Link to={"/finish-buy"}><FinishBuy /></Link> : ""}
       
     </CartBox>
   );
