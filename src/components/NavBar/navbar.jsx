@@ -66,6 +66,9 @@ const Navbar = () => {
           <ul><Link to="/category/ukelele">Ukelele</Link></ul>
           <ul>Sale!!</ul>
         </UlNavigation>
+        <button onClick={() => {
+          window.localStorage.clear();
+        }}>Log out</button>
       </UlContainer>
     </Nav>
   );

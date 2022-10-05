@@ -1,9 +1,11 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
 import { ItemList } from "../ItemList/itemList";
 import { collection, getDocs, getFirestore, where, query } from "firebase/firestore";
+import { LoginContext } from "../../Context/LoginContext";
+import { LoginView } from "../login/loginPage";
 
 const Container = styled.div`
   max-width: 100vw;
@@ -58,6 +60,7 @@ const Loader = styled.span`
 export const ItemListContainer = () => {
   const { categoryId } = useParams();
   const [products, setProducts] = useState([]);
+  const { isLog } = useContext(LoginContext);
 
   /* Aqui tiene que venir el llamado a la API */
   const getProducts = () => {
@@ -83,9 +86,10 @@ export const ItemListContainer = () => {
 
   useEffect(() => {
     getProducts();
-  }, [categoryId]);
+  }, [categoryId, isLog]);
   return (
-    <Container>
+    <>
+    {window.localStorage.getItem('hash') ? <Container>
       {products.length === 0 ? (
         <LoaderContainer>
           <Loader />
@@ -93,10 +97,9 @@ export const ItemListContainer = () => {
       ) : (
         <ItemList products={products} category={categoryId} />
       )}
-    </Container>
-    /* 
-        <Container>
-            <ItemList products={products} category={categoryId}/>
-        <Container/> */
+    </Container>  : <LoginView />}
+      
+    </>
+    
   );
 };

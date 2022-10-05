@@ -1,4 +1,7 @@
+import { useEffect } from "react";
+import { useContext } from "react";
 import styled from "styled-components";
+import { LoginContext } from "../../Context/LoginContext";
 
 const WellcomeMsg = styled.div`
   width: 30%;
@@ -17,9 +20,11 @@ const User = styled.p`
 `;
 
 export const UserInfo = () => {
+  const { user,isLog } = useContext(LoginContext);
+  
   return (
     <WellcomeMsg>
-      <User>Wellcome Franco</User>
+      <User>Login</User>
     </WellcomeMsg>
   );
 };
