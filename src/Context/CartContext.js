@@ -103,8 +103,7 @@ const CartProvider = ({ children }) => {
       addDoc(ordersCollection, newOrder).then((snapshot) => {
         setOrderId(snapshot.id);
         swal({
-          title: "Tus datos fueron gusrdados con éxito",
-          text: "Numero de ID " + orderId,
+          title: "Tus datos fueron gusrdados con éxito",          
           icon: "success",
           timer: 1500,
         });
@@ -132,6 +131,7 @@ const CartProvider = ({ children }) => {
         createOrder,
         orderId,
         order,
+        setOrderId
       }}
     >
       {children}

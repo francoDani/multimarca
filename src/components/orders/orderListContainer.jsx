@@ -1,6 +1,8 @@
 import { useContext } from "react";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { CartContext } from "../../Context/CartContext";
+import { Button } from "../button/button";
 
 const OrderInfoContainer = styled.div`
 width: 100%;
@@ -43,6 +45,7 @@ const OrdersListContainer = () => {
           <p>Total: {totalShop}</p>
         </OrderInfo>
       )}
+      <Link to={"/"}><Button>Volver al menu</Button></Link>
     </OrderInfoContainer>
   );
 };

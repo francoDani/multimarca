@@ -110,7 +110,7 @@ export const ItemDetail = ({ product }) => {
                 );
               }}
             >
-              Terminar mi compra
+              Añadir al carrito
             </AddToCartButton>
           </Link>
         )}

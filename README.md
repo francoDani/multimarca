@@ -1,70 +1,35 @@
-# Getting Started with Create React App
+# Sui Guitars
+## Soul Instruments
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+### **Idea del proyecto:**
+   Al comenzar el curso decidí seguir el hilo e ir adaptando y modificando mi app mientras contenidos nuevos iban apareciendo, esto complicó un poco el desarrollo y el orden del código pero me permitió valorar la importancia de un código limpio desde un principio, siempre pensando en la escalabilidad del proyecto
 
-## Available Scripts
+### **Prittier**
+    Espacios: 4
+    configuración estandar.
 
-In the project directory, you can run:
+### **Estilos:**
+    variables en App.css para estandarizar colores y escalabilidad para modificaciones.
 
-### `npm start`
+### **Correr proyecto**
+    npm start
+    no unit tests
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### **Versiones:**
+    - Node 16.16.0
+    - Sweet alert 2.0
+    - styled components 6.0.0-beta.3
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
 
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## **Uso:**
+    - Elije un producto
+    - En la vista de detalles tienes imagen, precio, condición, stock, descripción y la opción de agregar más de una unidad por producto
+    - Una vez que selecciones al menos una unidad se habilita el botón para agregar al carrito
+    - Puedes volver y agregar más items a tu carrito
+    - Una vez que tengas lo que necesitas en tu carrito, puedes hacer click en el Cart widget para ver todos los items agregados
+    - Si deseas eliminar alguno de los items puedes hacerlo individualmente o en su totalidad
+    - Para finalizar el proceso de compra haz click en "Ir a pagar"
+    - Se abrirá una sección para que puedas colocar los datos de contacto necesarios (validaciones solo para campos vacíos)
+    - Puedes ver los detalles de tu compra y numero de orden en "ver resumen"
+    - Para volver al inicio puedes hacer click en el botón o en el logo del Nav.
+    - Puedes iniciar un nuevo proceso de compra

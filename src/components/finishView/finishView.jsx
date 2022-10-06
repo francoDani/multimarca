@@ -1,8 +1,10 @@
+import { useEffect } from "react";
 import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import swal from "sweetalert";
 import { CartContext } from "../../Context/CartContext";
+import { Button } from "../button/button";
 
 const ClientInfoContainer = styled.div`
   width: 100%;
@@ -52,14 +54,13 @@ const SaveButton = styled.button`
   }
 `;
 
-
-
 const FinishBuyView = () => {
-  const { setBuyer, createOrder, orderId } =
+  const { setBuyer, createOrder, orderId, setOrderId, cart } =
     useContext(CartContext);
   const [name, setName] = useState();
   const [email, setEmail] = useState();
   const [phone, setPhone] = useState();
+  const [finish, setFinish] = useState(false);
   const changehandler = (e) => {
     switch (e.target.name) {
       case "name":
@@ -93,35 +94,49 @@ const FinishBuyView = () => {
       });
     }
   };
-  
+  useEffect(() => {}, [finish]);
+
   return (
-    <ClientInfoContainer>      
-        <ClientInfo>
-          <h2>Ingresa tus datos para terminar con la compra</h2>
-          <Label htmlFor="name">Nombre completo</Label>
-          <ClientInfoInput
-            type="text"
-            autoComplete="none"
-            name="name"
-            onChange={changehandler}
-          />
-          <Label htmlFor="email">Email</Label>
-          <ClientInfoInput type="email" name="email" onChange={changehandler} />
-          <Label htmlFor="phone">Teléfono</Label>
-          <ClientInfoInput
-            type="text"
-            autoComplete="none"
-            name="phone"
-            onChange={changehandler}
-          />          
-            <SaveButton onClick={(e) => validateBuyer(e)}>
+    <ClientInfoContainer>
+      <ClientInfo>
+        {!finish ? (
+          <>
+            <h2>Ingresa tus datos para terminar con la compra</h2>
+            <Label htmlFor="name">Nombre completo</Label>
+            <ClientInfoInput
+              type="text"
+              autoComplete="none"
+              name="name"
+              onChange={changehandler}
+            />
+            <Label htmlFor="email">Email</Label>
+            <ClientInfoInput
+              type="email"
+              name="email"
+              onChange={changehandler}
+            />
+            <Label htmlFor="phone">Teléfono</Label>
+            <ClientInfoInput
+              type="number"
+              autoComplete="none"
+              name="phone"
+              onChange={changehandler}
+            />
+            <SaveButton
+              onClick={(e) => {
+                validateBuyer(e);
+                setFinish(true);
+              }}
+            >
               Guardar Datos
             </SaveButton>
-            {orderId ? <Link to={"/orders"}>
-                <SaveButton>Ver resumen</SaveButton>
-                </Link> : ""}
-            
-        </ClientInfo>
+          </>
+        ) : (
+          <Link to={"/orders"}>
+            <Button>Ver resumen</Button>
+          </Link>
+        )}
+      </ClientInfo>
     </ClientInfoContainer>
   );
 };
